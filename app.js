@@ -1,7 +1,9 @@
 const express = require('express')
 const ejs = require('ejs')
 const bodyParser = require('body-parser')
-const path = require('path')
+const dbConnect = require('./config/db')
+
+const userRoute = require('./routes/userRoute')
 
 const app = express()
 
@@ -15,12 +17,16 @@ app.use(express.static('./public'));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
+//Db Configuration
+dbConnect()
+
 app.get('/', (req, res) => {
-    res.send('Hello Word')
+    res.render('home')
 })
 
 //Routes
+app.use('/api/auth', userRoute)
 
 //Server
-const port = 5000
+const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server running on port ${port}`))
