@@ -6,6 +6,25 @@
     <title>Login Page</title>
 </head>
 <body>
-    
+    <div class="container">
+        <h1>Login Form</h1>
+        <span class="failure"><%= msg !== undefined ? msg : '' %></span>
+        <form action="/api/auth/login" method="POST" enctype="multipart/form-data">
+            <div class="username">
+                <label for="username">
+                    <input type="text" name="email">
+                </label>
+            </div>
+            <div class="password">
+                <label for="pswd">
+                    <input type="password" name="password">
+                </label>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <section class="info">
+            <p>Not yet a member ? <a href="/views/register.ejs">Register</a></p>
+        </section>
+    </div>
 </body>
 </html>

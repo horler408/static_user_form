@@ -6,6 +6,37 @@
     <title>Registration Page</title>
 </head>
 <body>
-    <h1>Register Form</h1>
+    <div class="container">
+        <h1>Register Form</h1>
+        <span class="success"><%= if msg !== undefined ? msg : '' %></span>
+        <form action="/api/auth/register" method="POST" enctype="multipart/form-data">
+            <label for="fname">
+                First Name
+                <input type="text" name="first_name" id="fname">
+            </label>
+            <label for="lname">
+                Last Name
+                <input type="text" name="last_name" id="lname">
+            </label>
+            <label for="email">
+                Email
+                <input type="email" name="email" id="email">
+            </label>
+            <label for="phone">
+                Phone Number
+                <input type="text" name="phone" id="phone">
+            </label>
+            <label for="pswd">
+                Password
+                <input type="password" name="password" id="pswd">
+            </label>
+            <label for="confirm-pswd">
+                Password
+                <input type="password" id="confirm-pswd">
+            </label>
+            <button class="submit-btn" type="submit">Submit</button>
+        </form>
+        <span>Already registered ? <a href="/views/login.ejs">Login</a></span>
+    </div>
 </body>
 </html>

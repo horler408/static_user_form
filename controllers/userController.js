@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const User = require("./../model/users");
 
 //Signup Logic
-exports.signup = (req, res) => {
+exports.register = (req, res) => {
     const {first_name, last_name, email, password, phone} = req.body
     User.find({ email: email })
       .exec()
@@ -29,12 +29,19 @@ exports.signup = (req, res) => {
             user
               .save()
               .then((result) => {
+                res.render('login', {msg: 'Sign up successful!'})
                 res.status(200).json({
                   message: "User Created successfully!",
                   createdUser: result,
                 });
               })
               .catch((err) => {
+                res.render('register', {msg: 'Error signing up',
+                first_name: first_name,
+                last_name: last_name,
+                email: email,
+                phone: phone
+              })
                 res.status(500).json({
                   message: "Invalid Email!",
                   error: err,
@@ -44,10 +51,18 @@ exports.signup = (req, res) => {
         }
       });
   };
+
+//Redirect to Pages
+exports.signup = (req, res) => {
+  res.redirect('register')
+}
+exports.signin = (req, res) => {
+  res.redirect('login')
+}
   
   //Login Logic
   exports.login = (req, res) => {
-      const { email, password } = req.body
+    const { email, password } = req.body
     User.find({ email: email })
       .exec()
       .then((user) => {
@@ -68,11 +83,11 @@ exports.signup = (req, res) => {
               process.env.JWT_SECRET,
               { expiresIn: "1h" }
             );
-            return res.status(200).json({
-              message: "Log in Successful!",
-              token: token,
-              expiresIn
-            });
+            return res.render('dashboard')
+            // return res.status(200).json({
+            //   message: "Log in Successful!",
+            //   token: token
+            // });
           }
           res.status(401).json({
             message: "Invalid Username or Password!",
@@ -80,6 +95,7 @@ exports.signup = (req, res) => {
         });
       })
       .catch((err) => {
+        res.render('login', {msg: 'Invalid Username or Password!'})
         res.status(500).json({
           error: err,
         });
