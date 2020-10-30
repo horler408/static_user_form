@@ -3,7 +3,8 @@ const ejs = require('ejs')
 const bodyParser = require('body-parser')
 const dbConnect = require('./config/db')
 
-const userRoute = require('./routes/userRoute')
+const userRoute = require('./routes/userRoute');
+const indexRoute = require('./routes/indexRoute')
 
 const app = express()
 
@@ -20,12 +21,9 @@ app.use(bodyParser.json())
 //Db Configuration
 dbConnect()
 
-app.get('/', (req, res) => {
-    res.render('home')
-})
-
 //Routes
-app.use('/api/auth', userRoute)
+app.use('/api/auth', userRoute);
+app.use('/', indexRoute);
 
 //Server
 const port = process.env.PORT || 5000;

@@ -8,7 +8,7 @@
 <body>
     <div class="container">
         <h1>Register Form</h1>
-        <span class="success"><%= if msg !== undefined ? msg : '' %></span>
+        <span class="success"><%= msg !== undefined ? msg : '' %></span>
         <form action="/api/auth/register" method="POST" enctype="multipart/form-data">
             <label for="fname">
                 First Name
@@ -36,7 +36,8 @@
             </label>
             <button class="submit-btn" type="submit">Submit</button>
         </form>
-        <span>Already registered ? <a href="/views/login.ejs">Login</a></span>
+        <p>Already registered ? <a href="login">Login</a></p>
+        <p>Return to <a href="/">home</a></p>
     </div>
 </body>
 </html>
