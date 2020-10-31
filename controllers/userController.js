@@ -52,14 +52,6 @@ exports.register = (req, res) => {
       });
   };
 
-//Redirect to Pages
-exports.signup = (req, res) => {
-  res.redirect('register')
-}
-exports.signin = (req, res) => {
-  res.redirect('login')
-}
-  
   //Login Logic
   exports.login = (req, res) => {
     const { email, password } = req.body

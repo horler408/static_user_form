@@ -1,6 +1,8 @@
 const express = require('express')
 const ejs = require('ejs')
 const bodyParser = require('body-parser')
+const path = require('path');
+
 const dbConnect = require('./config/db')
 
 const userRoute = require('./routes/userRoute');
@@ -8,11 +10,13 @@ const indexRoute = require('./routes/indexRoute')
 
 const app = express()
 
+//Static folder
+app.use(express.static(path.join(__dirname, 'public')))
+//app.use(express.static('./public'));
+
 // EJS
 app.set('view engine', 'ejs');
 
-//Static folder
-app.use(express.static('./public'));
 
 //Body Parser
 app.use(bodyParser.urlencoded({ extended: false }))
