@@ -1,7 +1,7 @@
 {
     "env": {
       "MONGO_ATLAS_PW": "rSZs1JTVedibYtQV",
-      "JWT_SECRET": "13)(24wr(ydsghcn)(mdo8327"
+      "JWT_KEY": "13)(24wr(ydsghcn)(mdo8327"
     }
   }
   
