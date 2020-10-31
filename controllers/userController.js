@@ -5,51 +5,35 @@ const User = require("./../model/users");
 
 //Signup Logic
 exports.register = (req, res) => {
-    const {first_name, last_name, email, password, phone} = req.body
-    User.find({ email: email })
-      .exec()
-      .then((user) => {
-        if (user.length > 0) {
-          return res.status(409).json({ message: "User already exists" });
-        } else {
-          bcrypt.hash(password, 12, (err, hashedPassword) => {
-            if (err) {
-              res.status(500).json({
-                error: err,
-              });
-            }
-            const user = new User({
-              first_name,
-              last_name,
-              email,
-              phone,
-              password: hashedPassword
-            });
-  
-            user
-              .save()
-              .then((result) => {
-                res.render('login', {msg: 'Sign up successful!'})
-                res.status(200).json({
-                  message: "User Created successfully!",
-                  createdUser: result,
-                });
-              })
-              .catch((err) => {
-                res.render('register', {msg: 'Error signing up',
-                first_name: first_name,
-                last_name: last_name,
-                email: email,
-                phone: phone
-              })
-                res.status(500).json({
-                  message: "Invalid Email!",
-                  error: err,
-                });
-              });
-          });
-        }
+  const { first_name, last_name, email, phone, password } = req.body
+  bcrypt.hash(password, 10, function(err, hash) {
+    if (err) {
+      res.json({
+        error: err,
       });
+    }
+    const user = new User({
+      first_name,
+      last_name,
+      email,
+      phone,
+      password: hash,
+    });
+    user
+      .save()
+      .then(() => {
+        res.render('login', {msg: 'Registration successfull!'})
+        res.status(201).json({
+          message: "User added successfully",
+        });
+      })
+      .catch((err) => {
+        //res.render('register', {error: 'Registration failed!'})
+        res.status(500).json({
+          error: err
+        });
+      });
+  });
   };
 
   //Login Logic
