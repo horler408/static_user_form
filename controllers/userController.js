@@ -5,82 +5,77 @@ const User = require("./../model/users");
 
 //Signup Logic
 exports.register = (req, res) => {
-  const { first_name, last_name, email, phone, password } = req.body
-  bcrypt.hash(password, 10, function(err, hash) {
-    if (err) {
-      res.json({
-        error: err,
-      });
-    }
-    const user = new User({
-      first_name,
-      last_name,
-      email,
-      phone,
-      password: hash,
+  const { first_name, last_name, email, phone, password, confirm_password} = req.body
+  User.find({ email: email })
+    .exec()
+    .then((user) => {
+      if (user.length >= 1) {
+        return res.render('register', {msg: "User Already Exist!", error: ''})
+      } else {
+        bcrypt.hash(password, 10, (err, hash) => {
+          if (err) {
+            res.status(500).json({
+              error: err,
+            });
+          } else {
+            const user = new User({
+              first_name,
+              last_name,
+              email,
+              phone,
+              password: hash
+            });
+            user
+              .save()
+              .then((result) => {
+                res.render('login', {msg: 'You are welcome, Please log in', error: ''})
+              })
+              .catch((err) => {
+                console.log(err);
+                res.status(500).json({
+                  error: err,
+                });
+              });
+          }
+        });
+      }
     });
-    user
-      .save()
-      .then(() => {
-        res.render('login', {msg: 'Registration successfull!'})
-        res.status(201).json({
-          message: "User added successfully",
-        });
-      })
-      .catch((err) => {
-        //res.render('register', {error: 'Registration failed!'})
-        res.status(500).json({
-          error: err
-        });
-      });
-  });
   };
 
-  //Login Logic
-  exports.login = (req, res) => {
-    const { email, password } = req.body
-    User.find({ email: email })
-      .exec()
-      .then((user) => {
-        if (user.length < 1) {
-          res.status(404).json({
-            message: "User Not Found!",
-          });
-        }
-        bcrypt.compare(password, user[0].password, (err, response) => {
-          if (err) {
-            res.status(401).json({
-              message: "Invalid Username or Password!",
-            });
-          }
-          if (response) {
-            const token = jwt.sign(
-              { email: user[0].email, userId: user[0].id },
-              process.env.JWT_SECRET,
-              { expiresIn: "1h" }
-            );
-            return res.render('dashboard')
-            // return res.status(200).json({
-            //   message: "Log in Successful!",
-            //   token: token
-            // });
-          }
-          res.status(401).json({
-            message: "Invalid Username or Password!",
-          });
+//Login Logic
+exports.login = (req, res, next) => {
+  User.findOne({ email: req.body.email })
+    .then((user) => {
+      if (!user) {
+        return res.status(404).json({
+          error: new Error("User not found!"),
         });
-      })
-      .catch((err) => {
-        res.render('login', {msg: 'Invalid Username or Password!'})
-        res.status(500).json({
-          error: err,
+      }
+      bcrypt
+        .compare(req.body.password, user.password)
+        .then((valid) => {
+          if (!valid) {
+            return res.render('login', 
+            {msg: '', error: 'Invalid username or password!'})
+          }
+          const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+            expiresIn: "2h",
+          });
+          res.render('dashboard', {token, user: req.body.first_name})
+        })
+        .catch((err) => {
+          res.render('login', {msg: '', error: err})
         });
-      });
-  };
-  
+    })
+    .catch((err) => {
+      res.render('login', {msg: '', error: err})
+    });
+};
+
+
   //Delete User
   exports.deleteUser = (req, res) => {
-    User.deleteOne({ id: req.params.userId })
+    User.deleteOne({ _id: req.params.userId })
       .exec()
       .then(() => {
         res.status(200).json({
@@ -94,3 +89,14 @@ exports.register = (req, res) => {
       });
   };
   
+  exports.getUsers = (req, res) => {
+    User.find().exec()
+    .then(user => {
+      res.status(200).json(user)
+    })
+    .catch(error => {
+      res.status(400).json({
+        error: error
+      })
+    })
+  }

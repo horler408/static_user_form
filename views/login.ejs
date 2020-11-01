@@ -9,8 +9,9 @@
 <body>
     <div class="container">
         <h1>Login Form</h1>
-        <span class="failure"><%= msg !== undefined ? msg : '' %></span>
-        <form action="/api/auth/login" method="POST" enctype="multipart/form-data">
+        <div class="success"><%= typeof msg != undefined ? msg : '' %></div>
+        <div class="failure"><%= typeof error != undefined ? error : '' %></div>
+        <form action="/api/auth/login" method="POST">
             <div class="username">
                 <label for="username">
                     <input type="text" name="email">

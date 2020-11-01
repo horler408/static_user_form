@@ -4,10 +4,10 @@ exports.home = (req, res) => {
 }
 
 exports.register = (req, res) => {
-    res.render('register', {msg: 'Welcome'})
+    res.render('register', {msg: 'Welcome', error: ''})
 }
 
 exports.login = (req, res) => {
-    res.render('login', {msg: 'Welcome'})
+    res.render('login', {msg: 'Welcome', error: ''})
 }
 
