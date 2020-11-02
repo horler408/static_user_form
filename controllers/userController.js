@@ -3,14 +3,51 @@ const jwt = require("jsonwebtoken");
 
 const User = require("./../model/users");
 
+exports.signup = (req, res) => {
+  res.render('register', {msg: 'Welcome', error: ''})
+}
+
+exports.signin = (req, res) => {
+  res.render('login', {msg: 'Welcome', error: ''})
+}
+
 //Signup Logic
 exports.register = (req, res) => {
-  const { first_name, last_name, email, phone, password, confirm_password} = req.body
-  User.find({ email: email })
+  const { first_name, last_name, email, phone, password, confirm_password } = req.body
+  let errors = []
+  if(!first_name || !last_name || !email || !phone || !password) {
+    errors.push({msg: '*Please fill all the fields'})
+  }
+
+  if(password != confirm_password) {
+    errors.push({ msg: 'Password do not match'})
+  }
+
+  if(password.length < 8) {
+    errors.push( { msg: 'Password must be atleast 8 characters long' })
+  }
+
+  if (errors.length > 0) {
+    res.render('register', {
+      errors,
+      first_name,
+      last_name,
+      email,
+      phone
+    })
+  }else {
+    User.findOne({ email: email })
     .exec()
     .then((user) => {
-      if (user.length >= 1) {
-        return res.render('register', {msg: "User Already Exist!", error: ''})
+      if (user) {
+        errors.push({msg: 'Email already exists'})
+        return res.render('register', {
+          errors,
+          first_name,
+          last_name,
+          email,
+          phone
+        })
       } else {
         bcrypt.hash(password, 10, (err, hash) => {
           if (err) {
@@ -28,7 +65,7 @@ exports.register = (req, res) => {
             user
               .save()
               .then((result) => {
-                res.render('login', {msg: 'You are welcome, Please log in', error: ''})
+                res.render('login', {info: 'Registration Successful!, Please log in'})
               })
               .catch((err) => {
                 console.log(err);
@@ -40,7 +77,8 @@ exports.register = (req, res) => {
         });
       }
     });
-  };
+  }
+};
 
 //Login Logic
 exports.login = (req, res, next) => {
@@ -61,7 +99,7 @@ exports.login = (req, res, next) => {
           const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
             expiresIn: "2h",
           });
-          res.render('dashboard', {token, user: req.body.first_name})
+          res.render('dashboard', {token, user})
         })
         .catch((err) => {
           res.render('login', {msg: '', error: err})

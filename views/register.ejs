@@ -1,59 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
-    <title>Registration Page</title>
-</head>
-<body>
-    <div class="container">
+
         <h1>Register Form</h1>
-        <div class="success"><%= typeof msg != undefined ? msg : '' %></div>
-        <div class="failure"><%= typeof error != undefined ? error : '' %></div>
+        <% if(typeof errors != 'undefined'){ %> 
+            <% errors.forEach(function(error) { %>
+            <div class="alert">
+              <%= error.msg %>
+            </div>
+            <% }); %> 
+        <% } %>
+        <div class="success"><%= typeof msg != 'undefined' ? msg : '' %></div>
+        <div class="failure"><%= typeof error != 'undefined' ? error : '' %></div>
         <form class="register_form" action="/api/auth/register" method="POST">
             <div class="first_name">
                 <label for="fname">
                     First Name
-                    <input type="text" name="first_name" id="fname">
+                    <input type="text" name="first_name" id="fname" 
+                    value="<%= typeof first_name != 'undefined'? first_name : ''  %>"
+                    >
                 </label>
             </div>
             <div class="last_name">
                 <label for="lname">
             </div>
                 Last Name
-                <input type="text" name="last_name" id="lname">
+                <input type="text" name="last_name" id="lname"
+                value="<%= typeof last_name != 'undefined'? last_name : ''  %>"
+                >
             </label>
             <div class="email">
                 <label for="email">
                     Email
-                    <input type="email" name="email" id="email">
+                    <input type="email" name="email" id="email"
+                    value="<%= typeof email != 'undefined'? email : ''  %>"
+                    >
                 </label>
             </div>
             <div class="phone">
                 <label for="phone">
                     Phone Number
-                    <input type="text" name="phone" id="phone">
+                    <input type="text" name="phone" id="phone"
+                    value="<%= typeof phone != 'undefined'? phone : ''  %>"
+                    >
                 </label>
             </div>
             <div class="password">
                 <label for="pswd">
                     Password
-                    <input type="password" name="password" id="pswd">
+                    <input type="password" name="password" id="pswd"
+                    value="<%= typeof password != 'undefined'? password : ''  %>"
+                    >
                 </label>
             </div>
             <div class="confirm_password">
                 <label for="confirm-pswd">
                     Password
-                    <input type="password" name="confirm-password" id="confirm-pswd">
+                    <input type="password" name="confirm_password" id="confirm-pswd">
                 </label>
             </div>
             <button class="submit-btn" type="submit">Submit</button>
         </form>
-        <p>Already registered ? <a href="login">Login</a></p>
+        <p>Already registered ? <a href="/api/auth/login">Login</a></p>
         <p>Return to <a href="/">home</a></p>
-    </div>
-
-    <!-- <script src="/js/app.js"></script> -->
-</body>
-</html>

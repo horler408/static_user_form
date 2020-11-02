@@ -1,16 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
-    <title>Login Page</title>
-</head>
-<body>
-    <div class="container">
+
         <h1>Login Form</h1>
-        <div class="success"><%= typeof msg != undefined ? msg : '' %></div>
-        <div class="failure"><%= typeof error != undefined ? error : '' %></div>
+        <% if(typeof errors != 'undefined'){ %> 
+            <% errors.forEach(function(error) { %>
+            <div class="alert">
+              <%= error.msg %>
+            </div>
+            <% }); %> 
+        <% } %>
+        <div class="success"><%= typeof info != 'undefined' ? info : '' %></div>
+        <div class="failure"><%= typeof error != 'undefined' ? error : '' %></div>
         <form action="/api/auth/login" method="POST">
             <div class="username">
                 <label for="username">
@@ -25,9 +23,6 @@
             <button type="submit">Login</button>
         </form>
         <section class="info">
-            <p>Not yet a member ? <a href="register">Register</a></p>
+            <p>Not yet a member ? <a href="/api/auth/register">Register</a></p>
             <p>Return to <a href="/">home</a></p>
         </section>
-    </div>
-</body>
-</html>

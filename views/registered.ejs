@@ -9,6 +9,7 @@
 <body>
     <div class="container">
         <h1>Register Form</h1>
+        <% include ./partials/messages  %>
         <div class="success"><%= typeof msg != undefined ? msg : '' %></div>
         <div class="failure"><%= typeof error != undefined ? error : '' %></div>
         <form class="register_form" action="/api/auth/register" method="POST">
