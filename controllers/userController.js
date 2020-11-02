@@ -3,10 +3,12 @@ const jwt = require("jsonwebtoken");
 
 const User = require("./../model/users");
 
+// Showing signup form
 exports.signup = (req, res) => {
   res.render('register', {msg: 'Welcome', error: ''})
 }
 
+// Showing login form
 exports.signin = (req, res) => {
   res.render('login', {msg: 'Welcome', error: ''})
 }
@@ -65,7 +67,8 @@ exports.register = (req, res) => {
             user
               .save()
               .then((result) => {
-                res.render('login', {info: 'Registration Successful!, Please log in'})
+                req.flash('success_msg', 'Registration Successful!, Please log in')
+                res.render('login')
               })
               .catch((err) => {
                 console.log(err);
