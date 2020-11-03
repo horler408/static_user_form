@@ -23,19 +23,26 @@
     <div class="success"><%= typeof info != 'undefined' ? info : '' %></div>
     <div class="failure"><%= typeof error != 'undefined' ? error : '' %></div>
     <form class="form-container" action="/api/auth/login" method="POST">
-        <div class="username">
-            <label for="username">Email
-                <input type="text" name="email">
-            </label>
-        </div>
-        <div class="password">Password
-            <label for="pswd">
-                <input type="password" name="password">
-            </label>
-        </div>
+        <h1>Sign in</h1>
+          <div class="social-container">
+            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+            <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+          <span>Use your account</span>
+        <label for="username">Email
+            <input type="text" name="email">
+        </label>
+        
+        <label for="pswd">Password
+            <input type="password" name="password">
+        </label>
+        
+        <a href="#">Forgot your password?</a>
         <button type="submit">Login</button>
     </form>
     <section class="info">
+        
         <p>Not yet a member ? <a href="/api/auth/register">Register</a></p>
         <p>Return to <a href="/">home</a></p>
     </section>

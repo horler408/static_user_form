@@ -22,6 +22,14 @@ li {
   list-style: none;
 }
 
+p {
+  font-size: 14px;
+  font-weight: 100;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  margin: 20px 0 30px;
+}
+
 a {
   text-decoration: none;
   color: #333;
@@ -177,3 +185,7 @@ input {
   opacity: 0;
   z-index: 1;
 } */
+
+.span {
+  margin: 10px;
+}
