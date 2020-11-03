@@ -1,8 +1,47 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
 .container {
   text-align: center;
+}
+
+li {
+  list-style: none;
 }
 
 a {
   text-decoration: none;
   color: #222;
+}
+
+a:hover {
+  border: 1px solid #222;
+}
+
+.nav-bar {
+  background: #fff;
+}
+
+.menu {
+  height: 10vh;
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-left: auto;
+}
+
+.menu_item {
+  outline: none;
 }
