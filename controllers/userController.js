@@ -5,12 +5,12 @@ const User = require("./../model/users");
 
 // Showing signup form
 exports.signup = (req, res) => {
-  res.render('register', {msg: 'Welcome', error: ''})
+  res.render('register')
 }
 
 // Showing login form
 exports.signin = (req, res) => {
-  res.render('login', {msg: 'Welcome', error: ''})
+  res.render('login')
 }
 
 //Signup Logic
@@ -97,19 +97,19 @@ exports.login = (req, res, next) => {
         .then((valid) => {
           if (!valid) {
             return res.render('login', 
-            {msg: '', error: 'Invalid username or password!'})
+            { error: 'Invalid username or password!' })
           }
           const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
             expiresIn: "2h",
           });
-          res.render('dashboard', {token, user})
+          res.render('dashboard', {token, userId: user._id,  user: req.user})
         })
         .catch((err) => {
-          res.render('login', {msg: '', error: err})
+          res.redirect('/api/auth/login')
         });
     })
     .catch((err) => {
-      res.render('login', {msg: '', error: err})
+      res.redirect('login', { error: err })
     });
 };
 

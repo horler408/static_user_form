@@ -1,6 +1,7 @@
 const express = require('express')
 const ejs = require('ejs')
 const expressLayouts = require('express-ejs-layouts')
+const session = require('express-session');
 const bodyParser = require('body-parser');
 const flash = require('connect-flash');
 const path = require('path');
