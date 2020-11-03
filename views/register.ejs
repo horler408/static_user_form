@@ -1,62 +1,83 @@
 
-        <h1>Register Form</h1>
-        <% if(typeof errors != 'undefined'){ %> 
-            <% errors.forEach(function(error) { %>
-            <div class="alert">
-              <%= error.msg %>
-            </div>
-            <% }); %> 
-        <% } %>
-        <div class="success"><%= typeof msg != 'undefined' ? msg : '' %></div>
-        <div class="failure"><%= typeof error != 'undefined' ? error : '' %></div>
-        <form class="register_form" action="/api/auth/register" method="POST">
-            <div class="first_name">
-                <label for="fname">
-                    First Name
-                    <input type="text" name="first_name" id="fname" 
-                    value="<%= typeof first_name != 'undefined'? first_name : ''  %>"
+        
+<section class="header">
+    <nav class="nav-bar">
+        <h1 class="title">HorlerTech</h1>
+        <div class="menu">
+            <div class="menu_item active"><a href="/">Home</a></div>
+            <div class="menu_item"><a href="#">Services</a></div>
+            <div class="menu_item"><a href="#">Services</a></div>
+            <div class="menu_item active"><a href="/api/auth/register">Register</a></div>
+            <div class="menu_item"><a href="/api/auth/login">Login</a></div>
+        </div>
+    </nav>
+</section>
+<section class="wrapper">
+            <% if(typeof errors != 'undefined'){ %> 
+                <% errors.forEach(function(error) { %>
+                <div class="alert">
+                  <%= error.msg %>
+                </div>
+                <% }); %> 
+            <% } %>
+            <div class="success"><%= typeof msg != 'undefined' ? msg : '' %></div>
+            <div class="failure"><%= typeof error != 'undefined' ? error : '' %></div>
+            <form class="form-container" action="/api/auth/register" method="POST">
+                <h1>Create Account</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>or use your email for registration</span>
+                <div class="first_name">
+                    <label for="fname">
+                        First Name
+                        <input type="text" name="first_name" id="fname" 
+                        value="<%= typeof first_name != 'undefined'? first_name : ''  %>"
+                        >
+                    </label>
+                </div>
+                <div class="last_name">
+                    <label for="lname">
+                </div>
+                    Last Name
+                    <input type="text" name="last_name" id="lname"
+                    value="<%= typeof last_name != 'undefined'? last_name : ''  %>"
                     >
                 </label>
-            </div>
-            <div class="last_name">
-                <label for="lname">
-            </div>
-                Last Name
-                <input type="text" name="last_name" id="lname"
-                value="<%= typeof last_name != 'undefined'? last_name : ''  %>"
-                >
-            </label>
-            <div class="email">
-                <label for="email">
-                    Email
-                    <input type="email" name="email" id="email"
-                    value="<%= typeof email != 'undefined'? email : ''  %>"
-                    >
-                </label>
-            </div>
-            <div class="phone">
-                <label for="phone">
-                    Phone Number
-                    <input type="text" name="phone" id="phone"
-                    value="<%= typeof phone != 'undefined'? phone : ''  %>"
-                    >
-                </label>
-            </div>
-            <div class="password">
-                <label for="pswd">
-                    Password
-                    <input type="password" name="password" id="pswd"
-                    value="<%= typeof password != 'undefined'? password : ''  %>"
-                    >
-                </label>
-            </div>
-            <div class="confirm_password">
-                <label for="confirm-pswd">
-                    Password
-                    <input type="password" name="confirm_password" id="confirm-pswd">
-                </label>
-            </div>
-            <button class="submit-btn" type="submit">Submit</button>
-        </form>
-        <p>Already registered ? <a href="/api/auth/login">Login</a></p>
-        <p>Return to <a href="/">home</a></p>
+                <div class="email">
+                    <label for="email">
+                        Email
+                        <input type="email" name="email" id="email"
+                        value="<%= typeof email != 'undefined'? email : ''  %>"
+                        >
+                    </label>
+                </div>
+                <div class="phone">
+                    <label for="phone">
+                        Phone Number
+                        <input type="text" name="phone" id="phone"
+                        value="<%= typeof phone != 'undefined'? phone : ''  %>"
+                        >
+                    </label>
+                </div>
+                <div class="password">
+                    <label for="pswd">
+                        Password
+                        <input type="password" name="password" id="pswd"
+                        value="<%= typeof password != 'undefined'? password : ''  %>"
+                        >
+                    </label>
+                </div>
+                <div class="confirm_password">
+                    <label for="confirm-pswd">
+                        Password
+                        <input type="password" name="confirm_password" id="confirm-pswd">
+                    </label>
+                </div>
+                <button class="submit-btn" type="submit">Sign up</button>
+            </form>
+    <p>Already registered ? <a href="/api/auth/login">Login</a></p>
+    <p>Return to <a href="/">home</a></p>
+</section>
