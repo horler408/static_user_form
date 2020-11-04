@@ -4,7 +4,7 @@ exports.home = (req, res) => {
 }
 
 exports.dashboard = (req, res) => {
-    res.render('dashboard', {user: req.user})
+    res.render('dashboard', {name: req.user.first_name})
 }
 
 

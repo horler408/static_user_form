@@ -68,7 +68,8 @@ exports.register = (req, res) => {
               .save()
               .then((result) => {
                 req.flash('success_msg', 'Registration Successful!, Please log in')
-                res.render('login')
+                //res.render('login')
+                res.redirect('/api/auth/login')
               })
               .catch((err) => {
                 console.log(err);
@@ -99,17 +100,23 @@ exports.login = (req, res, next) => {
             return res.render('login', 
             { error: 'Invalid username or password!' })
           }
-          const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-            expiresIn: "2h",
-          });
-          res.render('dashboard', {token, userId: user._id,  user: req.user})
+          else{
+            const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+              expiresIn: "2h",
+            });
+            res.render('dashboard', {token, userId: user._id,  name: req.user.first_name})
+            //res.redirect('/dashboard')
+          }
         })
         .catch((err) => {
-          res.redirect('/api/auth/login')
+          res.status(500).json({error: err})
+          // req.flash('error_msg', 'Invalid username or password')
+          // res.redirect('/api/auth/login')
         });
     })
     .catch((err) => {
-      res.redirect('login', { error: err })
+      req.flash('error_msg', 'User do not exists')
+      res.redirect('/api/auth/login')
     });
 };
 
