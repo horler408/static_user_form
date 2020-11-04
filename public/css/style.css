@@ -9,13 +9,11 @@
 body {
   min-height: 100vh;
   font-family: "Montserrat", sans-serif;
-  background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
+  /* background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%); */
+  background: #f6f5f7;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-}
-
-.container {
 }
 
 li {
@@ -26,20 +24,25 @@ p {
   font-size: 14px;
   font-weight: 100;
   line-height: 20px;
+  display: inline-block;
   letter-spacing: 0.5px;
-  margin: 20px 0 30px;
+  margin: 20px 30px;
 }
 
 a {
   text-decoration: none;
   color: #333;
-  font-size: 14px;
+  font-size: 16px;
   text-decoration: none;
   margin: 15px 0;
 }
 
+a:hover {
+  border-bottom: 1px solid;
+}
+
 .nav-bar {
-  background: #fff;
+  background: #0ba360;
 }
 
 .title {
@@ -65,6 +68,7 @@ a {
   padding: 5px 10px;
   outline: none;
   cursor: pointer;
+  border-radius: 5px;
   border: 1px solid rgba(255, 255, 255, 0.5);
   background: rgba(255, 255, 255, 0.5);
 }
@@ -78,22 +82,12 @@ a {
   display: grid;
   place-items: center;
   text-align: center;
-}
-
-/* .started {
-  position: absolute;
-  width: 250px;
-  height: 50px;
   background: #fff;
-  text-align: center;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%);
-} */
+}
 
 .started {
   text-transform: uppercase;
-  background: transparent;
+  background: #0ba360;
   color: #222;
   width: 200px;
   height: 50px;
@@ -122,6 +116,8 @@ button {
   color: #ffffff;
   font-size: 12px;
   font-weight: bold;
+  display: block;
+  margin: 20px;
   padding: 12px 45px;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -136,56 +132,43 @@ button:focus {
   outline: none;
 }
 
+/* Register and Login */
 .wrapper {
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   position: relative;
   margin: 50px auto;
-  width: 768px;
+  width: 500px;
   max-width: 100%;
-  min-height: 480px;
+  min-height: 380px;
 }
 
 form {
   background-color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
   padding: 0 50px;
   height: 100%;
+}
+
+form h1 {
   text-align: center;
+  margin: 20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
 }
 
 input {
   background-color: #eee;
+  display: flex;
   border: none;
   padding: 12px 15px;
   margin: 8px 0;
   width: 100%;
 }
 
-/* .form-container {
-  position: absolute;
-  top: 0;
-  height: 100%;
-  transition: all 0.6s ease-in-out;
-} */
-
-/* .sign_in-container {
-  left: 0;
-  width: 50%;
-  z-index: 2;
-}
-
-.sign_up-container {
-  left: 0;
-  width: 50%;
-  opacity: 0;
-  z-index: 1;
-} */
-
 .span {
-  margin: 10px;
+  margin-bottom: 10px;
 }
