@@ -1,16 +1,17 @@
-// const firstName = document.getElementById('fname');
-// const lastName = document.getElementById('lname');
-// const email = document.getElementById('email');
-// const password = document.getElementById('pswd');
-// const confirmPassword = document.getElementById('confirm-pswd')
-// const registerForm = document.querySelector('.register_form')
-const token = document.querySelector('.token')
 
+const BASE_URL = 'http://localhost:5000/'
 
-token.innerHTML = localStorage.setItem('token', token)
-document.body.onload = localStorage.setItem('token', token)
+const getRequest = async () => {
+    const response = await fetch(`${BASE_URL}/dashboard`)
+    const data = await response.json()
+    const token = data.token
+    const name = data.name
 
-const info = localStorage.getItem('token')
+    localStorage.setItem('token', token);
+    const info = localStorage.getItem('token');
+}
+
+//document.body.onload = localStorage.setItem('token', token)
 
 
 //Validation

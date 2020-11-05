@@ -33,13 +33,13 @@
                 <div class="name">
                     <label for="fname">
                         First Name
-                        <input type="text" name="first_name" id="fname" 
+                        <input type="text" name="first_name" id="fname" required
                         value="<%= typeof first_name != 'undefined'? first_name : ''  %>"
                         >
                     </label>
                     <label for="lname">
                         Last Name
-                        <input type="text" name="last_name" id="lname"
+                        <input type="text" name="last_name" id="lname" required
                         value="<%= typeof last_name != 'undefined'? last_name : ''  %>"
                         >
                     </label>
@@ -47,13 +47,13 @@
                 <div class="email">
                     <label for="email">
                         Email
-                        <input type="email" name="email" id="email"
+                        <input type="email" name="email" id="email" required
                         value="<%= typeof email != 'undefined'? email : ''  %>"
                         >
                     </label>
                     <label for="phone">
                         Phone Number
-                        <input type="text" name="phone" id="phone"
+                        <input type="text" name="phone" id="phone" required
                             value="<%= typeof phone != 'undefined'? phone : ''  %>"
                         >
                     </label>
@@ -62,13 +62,13 @@
                 <div class="password">
                     <label for="pswd">
                         Password
-                        <input type="password" name="password" id="pswd"
+                        <input type="password" name="password" id="pswd" required
                             value="<%= typeof password != 'undefined'? password : ''  %>"
                         >
                     </label>  
                     <label for="confirm-pswd">
                         Password
-                        <input type="password" name="confirm_password" id="confirm-pswd">
+                        <input type="password" name="confirm_password" id="confirm-pswd" required>
                     </label>
                 </div>
 
