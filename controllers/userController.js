@@ -97,14 +97,14 @@ exports.login = (req, res, next) => {
         .compare(req.body.password, user.password)
         .then((valid) => {
           if (!valid) {
-            return res.render('login', 
-            { error: 'Invalid username or password!' })
+            req.flash('error_msg', 'Invalid password!')
+            res.redirect('login')
           }
           else{
-            const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+            const token = jwt.sign({ name: user.first_name }, process.env.JWT_SECRET, {
               expiresIn: "2h",
             });
-            res.render('dashboard', {token, userId: user._id,  name: req.user.first_name})
+            res.render('dashboard', {token,  name: user.first_name})
             //res.redirect('/dashboard')
           }
         })

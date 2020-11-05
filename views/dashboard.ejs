@@ -1,13 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
-    <title>Dashboard</title>
-</head>
-<body>
+
+<section class="header">
+    <nav class="nav-bar">
+        <h1 class="title">HorlerTech</h1>
+        <div class="menu">
+            <div class="menu_item active"><a href="#">Home</a></div>
+            <div class="menu_item"><a href="#">Services</a></div>
+            <div class="menu_item"><a href="#">About</a></div>
+            <div class="menu_item"><a href="/api/auth/register">Register</a></div>
+            <div class="menu_item"><a href="/api/auth/login">Login</a></div>
+        </div>
+    </nav>
+</section>
+
+<section class="main">
     <h1>Dashboard Page</h1>
     <div class="info">Welcome <%= typeof name != 'undefined' ? name : '' %></div>
-</body>
-</html>
+    <div class="token"></div>
+</section>
+    
