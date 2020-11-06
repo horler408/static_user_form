@@ -1,4 +1,4 @@
-
+const loginBtn = document.getElementById('login-btn');
 const BASE_URL = 'http://localhost:5000/'
 
 const getRequest = async () => {
@@ -10,6 +10,8 @@ const getRequest = async () => {
     localStorage.setItem('token', token);
     const info = localStorage.getItem('token');
 }
+
+//loginBtn.addEventListener('click', getRequest)
 
 //document.body.onload = localStorage.setItem('token', token)
 
