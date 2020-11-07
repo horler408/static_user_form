@@ -15,7 +15,7 @@ exports.signin = (req, res) => {
 
 //Signup Logic
 exports.register = (req, res) => {
-  const { first_name, last_name, email, phone, password, confirm_password } = req.body
+  const { first_name, last_name, email, phone, role, password, confirm_password } = req.body
   let errors = []
   if(!first_name || !last_name || !email || !phone || !password) {
     errors.push({msg: '*Please fill all the fields'})
@@ -62,6 +62,7 @@ exports.register = (req, res) => {
               last_name,
               email,
               phone,
+              role,
               password: hash
             });
             user

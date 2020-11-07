@@ -9,11 +9,7 @@
 body {
   min-height: 100vh;
   font-family: "Montserrat", sans-serif;
-  /* background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%); */
   background: #f6f5f7;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
 }
 
 li {
@@ -26,7 +22,7 @@ p {
   line-height: 20px;
   display: inline-block;
   letter-spacing: 0.5px;
-  margin: 20px 30px;
+  margin: 10px 30px;
 }
 
 a {
@@ -321,12 +317,6 @@ input {
   line-height: 25px;
   display: block;
 }
-@media only screen and (max-width: 768px) {
-  .table {
-    flex: 1 1 100%;
-    overflow-x: scroll;
-  }
-}
 .cards {
   flex: 1 1 34%;
   flex-wrap: wrap;
@@ -373,6 +363,21 @@ input {
   margin-left: 5px;
 }
 @media only screen and (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+  .wrapper {
+    max-width: 90%;
+  }
+  form h1 {
+    width: 100%;
+  }
+  .social-container {
+    width: 100%;
+  }
+  form {
+    padding: 0 30px;
+  }
   .cards {
     flex: 1 1 100%;
   }
@@ -382,5 +387,12 @@ input {
   .card .num,
   .card h3 {
     z-index: 0;
+  }
+  .menu {
+    display: none;
+  }
+  .table {
+    flex: 1 1 100%;
+    overflow-x: scroll;
   }
 }
