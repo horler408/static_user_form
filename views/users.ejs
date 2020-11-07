@@ -3,15 +3,18 @@
 <section class="">
     <h1>Users Page</h1>
     <div class="get_users"><a href="/api/auth/users">Get Users</a></div>
-    <% if(typeof users != 'undefined'){ %> 
-        <% users.forEach(function(user) { %>
-        <div class="users">
-          <p>First Name: <%= user.first_name %></p>
-          <p>Lastst Name: <%= user.last_name %></p>
-          <p>Email: <%= user.email %></p>
-        </div>
-        <% }); %> 
-    <% } %> 
+    <div class="user_container">
+        <% if(typeof users != 'undefined'){ %> 
+            <% users.forEach(function(user) { %>
+            <div class="users">
+              <p>First Name: <%= user.first_name %></p>
+              <p>Lastst Name: <%= user.last_name %></p>
+              <p>Email: <%= user.email %></p>
+            </div>
+            <button class="delete"><a href="/user/<% user._id %>">Delete</a></button>
+            <% }); %> 
+        <% } %> 
+    </div>
     
 </section>
 
