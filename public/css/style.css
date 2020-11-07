@@ -45,7 +45,8 @@ a:hover {
   background: #0ba360;
 }
 
-.title {
+nav img {
+  margin: 5px;
 }
 
 .menu {
@@ -191,4 +192,20 @@ input {
 .get_users {
   width: 100px;
   height: 30px;
+}
+
+.error_msg,
+.errors_msg,
+.error_alert,
+.failure {
+  font-size: 14px;
+  color: #ff4b2b;
+  text-align: center;
+  margin: 10px;
+}
+
+.success_msg,
+.success {
+  font-size: 14px;
+  color: chartreuse;
 }
