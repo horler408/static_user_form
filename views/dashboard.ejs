@@ -3,7 +3,10 @@
 
 <section class="">
     <h1 class="user_info">Welcome <%= typeof name != 'undefined' ? name : '' %></h1>
-
+    <% if(role == "admin"){ %>
+        <div class="admin"><a href="/admin">Admin Page</a></div>
+    <% } %> 
+     
     <div class="dashboard">
         <div class="card-icon">
             <div class="card-icon-body">

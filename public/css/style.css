@@ -207,6 +207,10 @@ input {
 }
 
 /* Dashboard Style */
+.admin {
+  text-align: center;
+  margin: 10px;
+}
 .user_info {
   margin: 10px;
   color: #5dae8b;

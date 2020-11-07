@@ -2,7 +2,6 @@
 
 <section class="">
     <h1>Users Page</h1>
-    <div class="get_users"><a href="/api/auth/users">Get Users</a></div>
     <div class="user_container">
         <% if(typeof users != 'undefined'){ %> 
             <% users.forEach(function(user) { %>
@@ -10,8 +9,9 @@
               <p>First Name: <%= user.first_name %></p>
               <p>Lastst Name: <%= user.last_name %></p>
               <p>Email: <%= user.email %></p>
+              <p>Role: <%= user.role %></p>
             </div>
-            <button class="delete"><a href="/user/<% user._id %>">Delete</a></button>
+            <button class="delete"><a href="/user/<% user.id %>">Delete</a></button>
             <% }); %> 
         <% } %> 
     </div>

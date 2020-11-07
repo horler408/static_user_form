@@ -69,7 +69,6 @@ exports.register = (req, res) => {
               .save()
               .then((result) => {
                 req.flash('success_msg', 'Registration Successful!, Please log in')
-                //res.render('login')
                 res.redirect('/api/auth/login')
               })
               .catch((err) => {
@@ -104,7 +103,7 @@ exports.login = (req, res, next) => {
             const token = jwt.sign({ name: user.first_name }, process.env.JWT_SECRET, {
               expiresIn: "2h",
             });
-            res.render('dashboard', {token,  name: user.first_name})
+            res.render('dashboard', {token,  name: user.first_name, role: user.role})
             //res.redirect('/dashboard')
           }
         })
@@ -126,9 +125,10 @@ exports.login = (req, res, next) => {
     User.deleteOne({ _id: req.params.userId })
       .exec()
       .then(() => {
-        res.status(200).json({
-          message: "User Deleted Successfully!",
-        });
+        res.render('users', {id: user._id})
+        // res.status(200).json({
+        //   message: "User Deleted Successfully!",
+        // });
       })
       .catch((err) => {
         res.status(500).json({
